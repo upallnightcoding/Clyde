@@ -12,6 +12,8 @@ namespace Clyde
 {
     public partial class Form1 : Form
     {
+        private WorkSpaceManager workSpaceManager = null;
+
         public Form1()
         {
             InitializeComponent();
@@ -20,6 +22,8 @@ namespace Clyde
         private void Form1_Load(object sender, EventArgs e)
         {
             animationWindow.Initialize();
+
+            workSpaceManager = new WorkSpaceManager(workSpaceTabCntrl, animationWindow);
         }
     }
 }

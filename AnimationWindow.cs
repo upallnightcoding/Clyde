@@ -14,7 +14,7 @@ namespace Clyde
 {
     public partial class AnimationWindow : OpenTK.GLControl
     {
-        private bool play = true;
+        private bool play = false;
         static float angle = 0.0f;
 
         public AnimationWindow()
@@ -35,6 +35,16 @@ namespace Clyde
             VSync = false;
 
             glControl_Resize(this, null);
+        }
+
+        public void StartAnimation()
+        {
+            play = true;
+        }
+
+        public void StopAnimation()
+        {
+            play = false;
         }
 
         private void Application_Idle(object sender, EventArgs e)
