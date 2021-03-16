@@ -32,6 +32,10 @@ namespace Clyde
             this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.preferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.applicationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.projectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,6 +44,7 @@ namespace Clyde
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.navigationCntrl = new System.Windows.Forms.TreeView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.grpBoxWorkSpace = new System.Windows.Forms.GroupBox();
@@ -51,6 +56,7 @@ namespace Clyde
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.messageCntrl = new System.Windows.Forms.ListBox();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -61,6 +67,7 @@ namespace Clyde
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.Panel2.SuspendLayout();
@@ -87,15 +94,46 @@ namespace Clyde
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newToolStripMenuItem,
+            this.preferencesToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
+            this.fileToolStripMenuItem.Click += new System.EventHandler(this.fileToolStripMenuItem_Click);
+            // 
+            // newToolStripMenuItem
+            // 
+            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.newToolStripMenuItem.Text = "New Project";
+            this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
+            // 
+            // preferencesToolStripMenuItem
+            // 
+            this.preferencesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.applicationToolStripMenuItem,
+            this.projectToolStripMenuItem});
+            this.preferencesToolStripMenuItem.Name = "preferencesToolStripMenuItem";
+            this.preferencesToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.preferencesToolStripMenuItem.Text = "Preferences";
+            // 
+            // applicationToolStripMenuItem
+            // 
+            this.applicationToolStripMenuItem.Name = "applicationToolStripMenuItem";
+            this.applicationToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.applicationToolStripMenuItem.Text = "Application";
+            // 
+            // projectToolStripMenuItem
+            // 
+            this.projectToolStripMenuItem.Name = "projectToolStripMenuItem";
+            this.projectToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.projectToolStripMenuItem.Text = "Project";
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
             // helpToolStripMenuItem
@@ -143,7 +181,7 @@ namespace Clyde
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer3);
             this.splitContainer1.Size = new System.Drawing.Size(860, 460);
-            this.splitContainer1.SplitterDistance = 246;
+            this.splitContainer1.SplitterDistance = 125;
             this.splitContainer1.TabIndex = 0;
             // 
             // splitContainer2
@@ -160,26 +198,35 @@ namespace Clyde
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.groupBox2);
-            this.splitContainer2.Size = new System.Drawing.Size(246, 460);
+            this.splitContainer2.Size = new System.Drawing.Size(125, 460);
             this.splitContainer2.SplitterDistance = 216;
             this.splitContainer2.TabIndex = 0;
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.navigationCntrl);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(246, 216);
+            this.groupBox1.Size = new System.Drawing.Size(125, 216);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Navigation";
+            // 
+            // navigationTree
+            // 
+            this.navigationCntrl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.navigationCntrl.Location = new System.Drawing.Point(3, 16);
+            this.navigationCntrl.Name = "navigationTree";
+            this.navigationCntrl.Size = new System.Drawing.Size(119, 197);
+            this.navigationCntrl.TabIndex = 0;
             // 
             // groupBox2
             // 
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(246, 240);
+            this.groupBox2.Size = new System.Drawing.Size(125, 240);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Detail";
@@ -200,7 +247,7 @@ namespace Clyde
             // 
             this.splitContainer3.Panel2.Controls.Add(this.groupBox3);
             this.splitContainer3.Panel2.Controls.Add(this.checkBox1);
-            this.splitContainer3.Size = new System.Drawing.Size(610, 460);
+            this.splitContainer3.Size = new System.Drawing.Size(731, 460);
             this.splitContainer3.SplitterDistance = 216;
             this.splitContainer3.TabIndex = 0;
             // 
@@ -210,7 +257,7 @@ namespace Clyde
             this.grpBoxWorkSpace.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpBoxWorkSpace.Location = new System.Drawing.Point(0, 0);
             this.grpBoxWorkSpace.Name = "grpBoxWorkSpace";
-            this.grpBoxWorkSpace.Size = new System.Drawing.Size(610, 216);
+            this.grpBoxWorkSpace.Size = new System.Drawing.Size(731, 216);
             this.grpBoxWorkSpace.TabIndex = 1;
             this.grpBoxWorkSpace.TabStop = false;
             this.grpBoxWorkSpace.Text = "Workspace";
@@ -228,8 +275,8 @@ namespace Clyde
             // splitContainer4.Panel2
             // 
             this.splitContainer4.Panel2.Controls.Add(this.animationWindow);
-            this.splitContainer4.Size = new System.Drawing.Size(604, 197);
-            this.splitContainer4.SplitterDistance = 256;
+            this.splitContainer4.Size = new System.Drawing.Size(725, 197);
+            this.splitContainer4.SplitterDistance = 307;
             this.splitContainer4.TabIndex = 0;
             // 
             // workSpaceTabCntrl
@@ -238,7 +285,7 @@ namespace Clyde
             this.workSpaceTabCntrl.Location = new System.Drawing.Point(0, 0);
             this.workSpaceTabCntrl.Name = "workSpaceTabCntrl";
             this.workSpaceTabCntrl.SelectedIndex = 0;
-            this.workSpaceTabCntrl.Size = new System.Drawing.Size(256, 197);
+            this.workSpaceTabCntrl.Size = new System.Drawing.Size(307, 197);
             this.workSpaceTabCntrl.TabIndex = 0;
             // 
             // animationWindow
@@ -247,7 +294,7 @@ namespace Clyde
             this.animationWindow.Dock = System.Windows.Forms.DockStyle.Fill;
             this.animationWindow.Location = new System.Drawing.Point(0, 0);
             this.animationWindow.Name = "animationWindow";
-            this.animationWindow.Size = new System.Drawing.Size(344, 197);
+            this.animationWindow.Size = new System.Drawing.Size(414, 197);
             this.animationWindow.TabIndex = 0;
             this.animationWindow.VSync = false;
             // 
@@ -263,11 +310,12 @@ namespace Clyde
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.messageCntrl);
             this.groupBox3.Controls.Add(this.statusStrip1);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(610, 240);
+            this.groupBox3.Size = new System.Drawing.Size(731, 240);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Messages";
@@ -276,7 +324,7 @@ namespace Clyde
             // 
             this.statusStrip1.Location = new System.Drawing.Point(3, 215);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(604, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(725, 22);
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -294,6 +342,15 @@ namespace Clyde
             // 
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // messageCntrl
+            // 
+            this.messageCntrl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.messageCntrl.FormattingEnabled = true;
+            this.messageCntrl.Location = new System.Drawing.Point(3, 16);
+            this.messageCntrl.Name = "messageCntrl";
+            this.messageCntrl.Size = new System.Drawing.Size(725, 199);
+            this.messageCntrl.TabIndex = 1;
             // 
             // Form1
             // 
@@ -318,6 +375,7 @@ namespace Clyde
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
             this.splitContainer3.Panel1.ResumeLayout(false);
             this.splitContainer3.Panel1.PerformLayout();
             this.splitContainer3.Panel2.ResumeLayout(false);
@@ -359,6 +417,12 @@ namespace Clyde
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private AnimationWindow animationWindow;
+        private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
+        private System.Windows.Forms.TreeView navigationCntrl;
+        private System.Windows.Forms.ToolStripMenuItem preferencesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem applicationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem projectToolStripMenuItem;
+        private System.Windows.Forms.ListBox messageCntrl;
     }
 }
 

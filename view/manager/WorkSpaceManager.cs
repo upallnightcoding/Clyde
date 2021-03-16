@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Clyde.view.form;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,10 +24,14 @@ namespace Clyde
             createTab("Game Play", new GamePlayForm(animationWindow));
         }
 
-        public void Add(string title, Form form)
+        public void createEditSprite(string title, Form form)
         {
-
+            createTab("Sprite - XXX", new SpriteCreatorForm());
         }
+
+        /*************************/
+        /*** Private Functions ***/
+        /*************************/
 
         private void createTab(string title, Form form)
         {
