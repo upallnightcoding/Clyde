@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Clyde.view.msg;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -105,7 +106,9 @@ namespace Clyde.view.manager
 
         private void TreeView_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            MessageBox.Show(e.Node.Text + ":" + ((string)(e.Node.Tag)));
+            string msg = e.Node.Text + ":" + ((string)(e.Node.Tag));
+
+            MsgManager.Instance.Post(MsgPostType.DISPLAY_MESSAGE, msg);
         }
     }
 }

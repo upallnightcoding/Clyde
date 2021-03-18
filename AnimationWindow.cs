@@ -32,7 +32,7 @@ namespace Clyde
 
             Application.Idle += Application_Idle;
 
-            VSync = false;
+            VSync = true;
 
             glControl_Resize(this, null);
         }
@@ -93,7 +93,8 @@ namespace Clyde
 
         private void RenderScene()
         {
-            GL.Begin(BeginMode.Quads);
+            //GL.Begin(BeginMode.Quads);
+            GL.Begin(PrimitiveType.Quads);
 
             GL.Color3(Color.Silver);
             GL.Vertex3(-1.0f, -1.0f, -1.0f);

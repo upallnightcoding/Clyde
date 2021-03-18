@@ -21,19 +21,19 @@ namespace Clyde
             this.workSpaceTabCntrl = workSpaceTabCntrl;
             this.animationWindow = animationWindow;
 
-            createTab("Game Play", new GamePlayForm(animationWindow));
+            CreateTab("Game Play", new GamePlayForm(animationWindow));
         }
 
-        public void createEditSprite(string title, Form form)
+        public void CreateEditSprite(string title, Form form)
         {
-            createTab("Sprite - XXX", new SpriteCreatorForm());
+            CreateTab("Sprite - XXX", new SpriteCreatorForm());
         }
 
         /*************************/
         /*** Private Functions ***/
         /*************************/
 
-        private void createTab(string title, Form form)
+        private void CreateTab(string title, Form form)
         {
             TabPage newPage = new TabPage(title);
 

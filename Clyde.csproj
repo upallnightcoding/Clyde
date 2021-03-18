@@ -81,6 +81,10 @@
     <Compile Include="view\manager\MessageManager.cs" />
     <Compile Include="view\manager\NavigationManager.cs" />
     <Compile Include="view\manager\WorkSpaceManager.cs" />
+    <Compile Include="view\msg\MsgManager.cs" />
+    <Compile Include="view\msg\MsgPost.cs" />
+    <Compile Include="view\msg\MsgPostType.cs" />
+    <Compile Include="view\msg\MsgReceiver.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
