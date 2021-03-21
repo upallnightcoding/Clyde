@@ -78,6 +78,7 @@
     <Compile Include="view\form\SpriteCreatorForm.Designer.cs">
       <DependentUpon>SpriteCreatorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="view\graphics\UtilityGraphics.cs" />
     <Compile Include="view\manager\MessageManager.cs" />
     <Compile Include="view\manager\NavigationManager.cs" />
     <Compile Include="view\manager\WorkSpaceManager.cs" />

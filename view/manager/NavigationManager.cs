@@ -101,7 +101,9 @@ namespace Clyde.view.manager
             }
 
             staticObjectNode.Nodes.Add(new TreeNode("New Static Object"));
-        
+
+            MsgManager.Instance.Post(MsgPostType.CREATE_SPITE_TAB);
+
         }
 
         private void TreeView_AfterSelect(object sender, TreeViewEventArgs e)
@@ -109,6 +111,14 @@ namespace Clyde.view.manager
             string msg = e.Node.Text + ":" + ((string)(e.Node.Tag));
 
             MsgManager.Instance.Post(MsgPostType.DISPLAY_MESSAGE, msg);
+        }
+
+        private TreeNode CreateTreeNode(string nodeName, object nodeData)
+        {
+            TreeNode newNode = new TreeNode(nodeName);
+            newNode.Tag = nodeData;
+
+            return (newNode);
         }
     }
 }

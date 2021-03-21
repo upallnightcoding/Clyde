@@ -1,4 +1,5 @@
 ﻿using Clyde.view.form;
+using Clyde.view.msg;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +9,14 @@ using System.Windows.Forms;
 
 namespace Clyde
 {
-    class WorkSpaceManager
+    class WorkSpaceManager : MsgReceiver
     {
         private TabControl workSpaceTabCntrl = null;
         private AnimationWindow animationWindow = null;
+
+        /*******************/
+        /*** Constructor ***/
+        /*******************/
 
         public WorkSpaceManager(
             TabControl workSpaceTabCntrl, 
@@ -22,16 +27,32 @@ namespace Clyde
             this.animationWindow = animationWindow;
 
             CreateTab("Game Play", new GamePlayForm(animationWindow));
+
+            MsgManager.Instance.Register(this);
         }
 
-        public void CreateEditSprite(string title, Form form)
+        /************************/
+        /*** Public Functions ***/
+        /************************/
+
+        public void Receive(MsgPost message)
         {
-            CreateTab("Sprite - XXX", new SpriteCreatorForm());
+            switch(message.Type)
+            {
+                case MsgPostType.CREATE_SPITE_TAB:
+                    CreateEditSprite("New Sprite");
+                    break;
+            }
         }
 
         /*************************/
         /*** Private Functions ***/
         /*************************/
+
+        public void CreateEditSprite(string title)
+        {
+            CreateTab("Sprite - XXX", new SpriteCreatorForm());
+        }
 
         private void CreateTab(string title, Form form)
         {
@@ -44,6 +65,7 @@ namespace Clyde
             newPage.Controls.Add(form);
 
             workSpaceTabCntrl.TabPages.Add(newPage);
+            workSpaceTabCntrl.SelectedTab = newPage;
 
             form.Show();
         }

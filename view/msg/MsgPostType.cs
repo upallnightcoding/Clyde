@@ -9,6 +9,7 @@ namespace Clyde.view.msg
     enum MsgPostType
     {
         UNKNOWN,
-        DISPLAY_MESSAGE
+        DISPLAY_MESSAGE,
+        CREATE_SPITE_TAB
     }
 }

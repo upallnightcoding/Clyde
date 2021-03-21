@@ -49,7 +49,7 @@ namespace Clyde.view.form
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(140, 30);
+            this.label2.Location = new System.Drawing.Point(23, 56);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(41, 13);
             this.label2.TabIndex = 1;
@@ -59,12 +59,12 @@ namespace Clyde.view.form
             // 
             this.textBox1.Location = new System.Drawing.Point(70, 26);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(58, 20);
+            this.textBox1.Size = new System.Drawing.Size(64, 20);
             this.textBox1.TabIndex = 2;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(187, 26);
+            this.textBox2.Location = new System.Drawing.Point(70, 52);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(64, 20);
             this.textBox2.TabIndex = 3;
@@ -73,7 +73,7 @@ namespace Clyde.view.form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(432, 313);
+            this.ClientSize = new System.Drawing.Size(234, 313);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label2);

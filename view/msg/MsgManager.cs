@@ -58,6 +58,11 @@ namespace Clyde.view.msg
             }
         }
 
+        public void Post(MsgPostType type)
+        {
+            Post(type, null);
+        }
+
 
     }
 }
