@@ -2,6 +2,7 @@
 using OpenTK.Graphics.OpenGL;
 using System;
 using System.Drawing;
+using System.Drawing.Imaging;
 
 namespace Clyde.view.graphics
 {
@@ -10,9 +11,88 @@ namespace Clyde.view.graphics
         // Class Constants
         private static float XY_PLANE = 0.0f;
 
+        private Matrix4 perpective;
+        private Matrix4 lookat;
+        private Size viewport;
+
+        private float zNear = 1.0f;
+        private float zFar = 64.0f;
+        private float fov = MathHelper.PiOver4;
+
         /************************/
         /*** Public Functions ***/
         /************************/
+
+        public Texture2D LoadTexture(string filePath)
+        {
+            Bitmap bitmap = new Bitmap(filePath);
+
+            int id = GL.GenTexture();
+
+            BitmapData bmpData = bitmap.LockBits(
+                new Rectangle(0, 0, bitmap.Width, bitmap.Height),
+                ImageLockMode.ReadOnly, 
+                System.Drawing.Imaging.PixelFormat.Format32bppArgb
+            );
+
+            GL.BindTexture(TextureTarget.Texture2D, id);
+
+            GL.TexImage2D(
+                TextureTarget.Texture2D, 
+                0, 
+                PixelInternalFormat.Rgba,
+                bitmap.Width, bitmap.Height, 
+                0,
+                OpenTK.Graphics.OpenGL.PixelFormat.Bgra, 
+                PixelType.UnsignedByte, 
+                bmpData.Scan0
+            );
+
+            bitmap.UnlockBits(bmpData);
+
+            GL.TexParameter(TextureTarget.Texture2D,
+                TextureParameterName.TextureMinFilter, (int)TextureMinFilter.Linear);
+            GL.TexParameter(TextureTarget.Texture2D,
+                TextureParameterName.TextureMagFilter, (int)TextureMinFilter.Linear);
+
+            return(new Texture2D(id, bitmap.Width, bitmap.Height));
+        }
+
+        public Vector3 UnProject(Vector3 mouse)
+        {
+            Vector3 p = UnProject(
+                mouse,
+                perpective,
+                lookat,
+                viewport
+            );
+
+            return (p);
+        }
+
+        public void Resize(int width, int height)
+        {
+            width = (height == 0) ? 1 : width;
+
+            GL.Viewport(0, 0, width, height);
+            viewport = new Size(width, height);
+
+            float aspect_ratio = width / (float) height;
+            perpective = Matrix4.CreatePerspectiveFieldOfView(fov, aspect_ratio, zNear, zFar);
+
+            GL.MatrixMode(MatrixMode.Projection);
+            GL.LoadMatrix(ref perpective);
+        }
+
+        public void Render()
+        {
+            lookat = Matrix4.LookAt(0, 0, -5, 0, 0, 0, 0, 1, 0);
+
+            GL.MatrixMode(MatrixMode.Modelview);
+            GL.LoadMatrix(ref lookat);
+
+            GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
+        }
 
         public void BoxRectangle(Color color)
         {
@@ -25,14 +105,27 @@ namespace Clyde.view.graphics
             GL.End();
         }
 
-        public void BoxRectangle(PointF p, float size, Color color)
+        public void CrossHair(Vector3 p)
+        {
+            float size = 0.02f;
+
+            GL.Color3(Color.White);
+            GL.Begin(PrimitiveType.Lines);
+            GL.Vertex3(p.X-size, p.Y, p.Z);
+            GL.Vertex3(p.X+size, p.Y, p.Z);
+            GL.Vertex3(p.X, p.Y-size, p.Z);
+            GL.Vertex3(p.X, p.Y+size, p.Z);
+            GL.End();
+        }
+
+        public void BoxRectangle(Vector3 p, float size, Color color)
         {
             GL.Begin(PrimitiveType.Quads);
             GL.Color3(color);
-            GL.Vertex3(p.X, p.Y, 1.02f);
-            GL.Vertex3(p.X, p.Y-size, 1.02f);
-            GL.Vertex3(p.X+size, p.Y-size, 1.02f);
-            GL.Vertex3(p.X+size, p.Y, 1.02f);
+            GL.Vertex3(p.X, p.Y, p.Z);
+            GL.Vertex3(p.X-size, p.Y, p.Z);
+            GL.Vertex3(p.X-size, p.Y-size, p.Z);
+            GL.Vertex3(p.X, p.Y-size, p.Z);
             GL.End();
         }
 

@@ -19,13 +19,12 @@ namespace Clyde
         private bool play = false;
         static float angle = 0.0f;
         private UtilityGraphics graphics = null;
-        private PointF p = new PointF(0.25f, 0.25f);
-        private Matrix4 perpective;
-        private Matrix4 lookat;
-        private Size viewport;
+        private PointF p = new PointF(0.0f, 0.0f);
         private Vector3 mouse = new Vector3();
 
         private bool mouseClicked = false;
+
+        private Texture2D texture;
 
         public AnimationWindow()
         {
@@ -42,12 +41,18 @@ namespace Clyde
             GL.ClearColor(Color.MidnightBlue);
             GL.Enable(EnableCap.DepthTest);
             GL.Enable(EnableCap.ProgramPointSize);
+            GL.Enable(EnableCap.Blend);
+            //GL.BlendFunc(BlendingFactor.OneMinusSrcColor, BlendingFactor.OneMinusDstColor);
+            GL.DepthFunc(DepthFunction.Lequal);
+            GL.Enable(EnableCap.Texture2D);
 
             Application.Idle += Application_Idle;
 
             VSync = true;
 
             glControl_Resize(this, null);
+
+            texture = graphics.LoadTexture("D:\\Projects\\c#\\Clyde\\view\\content\\PlatformC.png");
         }
 
         public void StartAnimation()
@@ -84,9 +89,11 @@ namespace Clyde
 
         private void glControl_Resize(object sender, EventArgs e)
         {
-            OpenTK.GLControl c = sender as OpenTK.GLControl;
+            OpenTK.GLControl client = sender as OpenTK.GLControl;
 
-            if (c.ClientSize.Height == 0)
+            graphics.Resize(client.ClientSize.Width, client.ClientSize.Height);
+
+            /*if (c.ClientSize.Height == 0)
                 c.ClientSize = new System.Drawing.Size(c.ClientSize.Width, 1);
 
             GL.Viewport(0, 0, c.ClientSize.Width, c.ClientSize.Height);
@@ -94,10 +101,11 @@ namespace Clyde
             viewport = new Size(c.ClientSize.Width, c.ClientSize.Height);
             //vp = new float[] { 0.0f, 0.0f, c.ClientSize.Width, c.ClientSize.Height};
 
-            float aspect_ratio = Width / (float)Height;
+            //float aspect_ratio = Width / (float)Height;
+            float aspect_ratio = c.ClientSize.Width / (float)c.ClientSize.Height;
             perpective = Matrix4.CreatePerspectiveFieldOfView(MathHelper.PiOver4, aspect_ratio, 1.0f, 64.0f);
             GL.MatrixMode(MatrixMode.Projection);
-            GL.LoadMatrix(ref perpective);
+            GL.LoadMatrix(ref perpective);*/
         }
 
         private void glControl_Paint(object sender, PaintEventArgs e)
@@ -108,15 +116,17 @@ namespace Clyde
         private void Render()
         {
             //Matrix4 lookat = Matrix4.LookAt(0, 5, 5, 0, 0, 0, 0, 1, 0);
-            lookat = Matrix4.LookAt(0, 0, -5, 0, 0, 0, 0, 1, 0);
+            //lookat = Matrix4.LookAt(0, 0, -5, 0, 0, 0, 0, 1, 0);
 
-            GL.MatrixMode(MatrixMode.Modelview);
-            GL.LoadMatrix(ref lookat);
+            //GL.MatrixMode(MatrixMode.Modelview);
+            //GL.LoadMatrix(ref lookat);
+
+            //GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
+
+            graphics.Render();
 
             GL.Rotate(angle, 0.0f, 1.0f, 0.0f);
             //angle += 0.5f;
-
-            GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
             RenderScene();
 
@@ -129,15 +139,7 @@ namespace Clyde
             //{
                 mouseClicked = false;
 
-            int[] viewport = new int[4];
-            Matrix4 modelMatrix, projMatrix;
-
-            GL.GetFloat(GetPName.ModelviewMatrix, out modelMatrix);
-            GL.GetFloat(GetPName.ProjectionMatrix, out projMatrix);
-            GL.GetInteger(GetPName.Viewport, viewport);
-
-            //Vector3 pm = new Vector3(graphics.UnProject(mouse, projMatrix, modelMatrix, new Size(viewport[2], viewport[3])));
-            Vector3 pm = graphics.UnProject(mouse, projMatrix, modelMatrix, new Size(viewport[2], viewport[3]));
+            Vector3 pm = graphics.UnProject(mouse);
 
             GL.Begin(PrimitiveType.Points);
             GL.Color3(Color.Silver);
@@ -146,30 +148,46 @@ namespace Clyde
             GL.End();
             //}
 
-            //graphics.Grid(4);
+            graphics.CrossHair(pm);
 
-            //graphics.BoxRectangle(p, 0.25f, Color.Red);
+            graphics.Grid(4);
+
+            PointF pp = new PointF(pm.X, pm.Y);
+            graphics.BoxRectangle(pm, 0.25f, Color.Red);
+
+            GL.BindTexture(TextureTarget.Texture2D, texture.Id);
+
+            GL.Begin(PrimitiveType.Triangles);
+            GL.Color4(1.0f, 1.0f, 1.0f, 1.0f);
+            GL.TexCoord2(0, 0); GL.Vertex2(0, 1);
+            GL.TexCoord2(1, 1); GL.Vertex2(1, 0);
+            GL.TexCoord2(0, 1); GL.Vertex2(0, 0);
+
+            GL.TexCoord2(0, 0); GL.Vertex2(0, 1);
+            GL.TexCoord2(1, 0); GL.Vertex2(1, 1);
+            GL.TexCoord2(1, 1); GL.Vertex2(1, 0);
+            GL.End();
 
             //GL.Begin(BeginMode.Quads);
-         /*   GL.Begin(PrimitiveType.Quads);
+            /*   GL.Begin(PrimitiveType.Quads);
 
-            GL.Color3(Color.Silver);
-            GL.Vertex3(-1.0f, -1.0f, -1.0f);
-            GL.Vertex3(-1.0f, 1.0f, -1.0f);
-            GL.Vertex3(1.0f, 1.0f, -1.0f);
-            GL.Vertex3(1.0f, -1.0f, -1.0f);
+               GL.Color3(Color.Silver);
+               GL.Vertex3(-1.0f, -1.0f, -1.0f);
+               GL.Vertex3(-1.0f, 1.0f, -1.0f);
+               GL.Vertex3(1.0f, 1.0f, -1.0f);
+               GL.Vertex3(1.0f, -1.0f, -1.0f);
 
-            GL.Color3(Color.Honeydew);
-            GL.Vertex3(-1.0f, -1.0f, -1.0f);
-            GL.Vertex3(1.0f, -1.0f, -1.0f);
-            GL.Vertex3(1.0f, -1.0f, 1.0f);
-            GL.Vertex3(-1.0f, -1.0f, 1.0f);
+               GL.Color3(Color.Honeydew);
+               GL.Vertex3(-1.0f, -1.0f, -1.0f);
+               GL.Vertex3(1.0f, -1.0f, -1.0f);
+               GL.Vertex3(1.0f, -1.0f, 1.0f);
+               GL.Vertex3(-1.0f, -1.0f, 1.0f);
 
-            GL.Color3(Color.Moccasin);
-            GL.Vertex3(-1.0f, -1.0f, -1.0f);
-            GL.Vertex3(-1.0f, -1.0f, 1.0f);
-            GL.Vertex3(-1.0f, 1.0f, 1.0f);
-            GL.Vertex3(-1.0f, 1.0f, -1.0f);*/
+               GL.Color3(Color.Moccasin);
+               GL.Vertex3(-1.0f, -1.0f, -1.0f);
+               GL.Vertex3(-1.0f, -1.0f, 1.0f);
+               GL.Vertex3(-1.0f, 1.0f, 1.0f);
+               GL.Vertex3(-1.0f, 1.0f, -1.0f);*/
 
             /*GL.Color3(Color.IndianRed);
             GL.Vertex3(-1.0f, -1.0f, 1.0f);
@@ -178,21 +196,21 @@ namespace Clyde
             GL.Vertex3(-1.0f, 1.0f, 1.0f);*/
             //graphics.BoxRectangle(Color.Blue);
 
-           /* GL.Begin(PrimitiveType.Quads);
+            /* GL.Begin(PrimitiveType.Quads);
 
-            GL.Color3(Color.PaleVioletRed);
-            GL.Vertex3(-1.0f, 1.0f, -1.0f);
-            GL.Vertex3(-1.0f, 1.0f, 1.0f);
-            GL.Vertex3(1.0f, 1.0f, 1.0f);
-            GL.Vertex3(1.0f, 1.0f, -1.0f);
+             GL.Color3(Color.PaleVioletRed);
+             GL.Vertex3(-1.0f, 1.0f, -1.0f);
+             GL.Vertex3(-1.0f, 1.0f, 1.0f);
+             GL.Vertex3(1.0f, 1.0f, 1.0f);
+             GL.Vertex3(1.0f, 1.0f, -1.0f);
 
-            GL.Color3(Color.ForestGreen);
-            GL.Vertex3(1.0f, -1.0f, -1.0f);
-            GL.Vertex3(1.0f, 1.0f, -1.0f);
-            GL.Vertex3(1.0f, 1.0f, 1.0f);
-            GL.Vertex3(1.0f, -1.0f, 1.0f);
+             GL.Color3(Color.ForestGreen);
+             GL.Vertex3(1.0f, -1.0f, -1.0f);
+             GL.Vertex3(1.0f, 1.0f, -1.0f);
+             GL.Vertex3(1.0f, 1.0f, 1.0f);
+             GL.Vertex3(1.0f, -1.0f, 1.0f);
 
-            GL.End();*/
+             GL.End();*/
         }
     }
 }
