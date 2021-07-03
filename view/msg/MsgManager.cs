@@ -40,6 +40,13 @@ namespace Clyde.view.msg
             }
         }
 
+        /// <summary>
+        /// Register() - Allows for the registration of a object that that can
+        /// receive a posted message.  If the receiver is null, it can not be
+        /// added to the registration list.  The receiver must be created with
+        /// the MsgReceiver interface.
+        /// </summary>
+        /// <param name="receiver"></param>
         public void Register(MsgReceiver receiver)
         {
             if (receiver != null)

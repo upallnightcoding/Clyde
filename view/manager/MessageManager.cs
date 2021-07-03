@@ -27,6 +27,10 @@ namespace Clyde.view.manager
         /*** Public Functions ***/
         /************************/
 
+        /// <summary>
+        /// This si just a test ...
+        /// </summary>
+        /// <param name="message"></param>
         public void Receive(MsgPost message)
         {
             switch(message.Type)

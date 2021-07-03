@@ -18,9 +18,9 @@ namespace Clyde.view.msg
         /*** Constructor ***/
         /*******************/
 
-        public MsgPost(MsgPostType type)
+        public MsgPost(MsgPostType type) : this(type, null)
         {
-
+            
         }
 
         public MsgPost(MsgPostType type, object dto)

@@ -28,6 +28,8 @@ namespace Clyde
         {
             animationWindow.Initialize();
 
+            // Define the manager objects that control the panels
+            //---------------------------------------------------
             workSpaceManager = new WorkSpaceManager(workSpaceTabCntrl, animationWindow);
             navigationManager = new NavigationManager(navigationCntrl);
             messageManager = new MessageManager(messageCntrl);

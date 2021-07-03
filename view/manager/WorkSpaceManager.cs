@@ -35,6 +35,10 @@ namespace Clyde
         /*** Public Functions ***/
         /************************/
 
+        /// <summary>
+        /// Receive() - Receiver of posted message.
+        /// </summary>
+        /// <param name="message"></param>
         public void Receive(MsgPost message)
         {
             switch(message.Type)
@@ -49,7 +53,7 @@ namespace Clyde
         /*** Private Functions ***/
         /*************************/
 
-        public void CreateEditSprite(string title)
+        private void CreateEditSprite(string title)
         {
             CreateTab("Sprite - XXX", new SpriteCreatorForm());
         }

@@ -13,15 +13,28 @@ namespace Clyde.view.graphics
 
         private Matrix4 perpective;
         private Matrix4 lookat;
-        private Size viewport;
+        public Size viewPort;
 
         private float zNear = 1.0f;
         private float zFar = 64.0f;
         private float fov = MathHelper.PiOver4;
 
+        private float zoom = 400;
+
         /************************/
         /*** Public Functions ***/
-        /************************/
+        /************************/ 
+
+        public void Initialize()
+        {
+            GL.ClearColor(Color.MidnightBlue);
+            GL.Enable(EnableCap.DepthTest);
+            GL.Enable(EnableCap.ProgramPointSize);
+            GL.Enable(EnableCap.Blend);
+            //GL.BlendFunc(BlendingFactor.OneMinusSrcColor, BlendingFactor.OneMinusDstColor);
+            GL.DepthFunc(DepthFunction.Lequal);
+            GL.Enable(EnableCap.Texture2D);
+        }
 
         public Texture2D LoadTexture(string filePath)
         {
@@ -64,7 +77,7 @@ namespace Clyde.view.graphics
                 mouse,
                 perpective,
                 lookat,
-                viewport
+                viewPort
             );
 
             return (p);
@@ -75,10 +88,9 @@ namespace Clyde.view.graphics
             width = (height == 0) ? 1 : width;
 
             GL.Viewport(0, 0, width, height);
-            viewport = new Size(width, height);
+            viewPort = new Size(width, height);
 
-            float aspect_ratio = width / (float) height;
-            perpective = Matrix4.CreatePerspectiveFieldOfView(fov, aspect_ratio, zNear, zFar);
+            perpective = Matrix4.CreateOrthographic(width/zoom, height/zoom, zNear, zFar);
 
             GL.MatrixMode(MatrixMode.Projection);
             GL.LoadMatrix(ref perpective);
@@ -86,14 +98,19 @@ namespace Clyde.view.graphics
 
         public void Render()
         {
-            lookat = Matrix4.LookAt(0, 0, -5, 0, 0, 0, 0, 1, 0);
-
             GL.MatrixMode(MatrixMode.Modelview);
+
+            lookat = Matrix4.LookAt(0, 0, 5, 0, 0, 0, 0, 1, 0);
             GL.LoadMatrix(ref lookat);
 
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
         }
 
+        public void DisplayTexture2D(Texture2D texture)
+        {
+            GL.BindTexture(TextureTarget.Texture2D, texture.Id);
+        }
+    
         public void BoxRectangle(Color color)
         {
             GL.Begin(PrimitiveType.Quads);
@@ -138,11 +155,6 @@ namespace Clyde.view.graphics
             GL.End();
         }
 
-        public void BackGroundGrid()
-        {
-
-        }
-
         public void Grid(int nBlocks)
         {
             float space = 2.0f / nBlocks;
@@ -169,6 +181,66 @@ namespace Clyde.view.graphics
             GL.End();
         }
 
+        public void SpriteGrid(int width, int height)
+        {
+            float imageDisplaySize = 1.0f;
+
+            GL.Color3(Color.White);
+            GL.Begin(PrimitiveType.Lines);
+
+            float xSpace = imageDisplaySize / width;
+
+            for (float x = 0.0f; x <= imageDisplaySize; x+=xSpace)
+            {
+                GL.Vertex3(x, imageDisplaySize, 1.0f);
+                GL.Vertex3(x, 0.0, 1.0f);
+            }
+
+            float ySpace = imageDisplaySize / height;
+
+            for (float y = 0.0f; y <= imageDisplaySize; y += ySpace)
+            {
+                GL.Vertex3(imageDisplaySize, y, 1.0f);
+                GL.Vertex3(0.0, y, 1.0f);
+            }
+
+            GL.End();
+        }
+
+        public void BackGroundGrid()
+        {
+            Vector3 pa = UnProject(new Vector3(0.0f, 0.0f, 0.0f));
+            Vector3 pb = UnProject(new Vector3((float) viewPort.Width, (float) viewPort.Height, 0.0f));
+            float space = 8.0f;
+            float nBlocks;
+            float x, y;
+
+            GL.Color3(Color.White);
+            GL.Begin(PrimitiveType.Lines);
+
+            nBlocks = Math.Abs((pb.X - pa.X) / space) + 1;
+            x = pa.X; 
+
+            for (int n = 0; n <= nBlocks; n++)
+            {
+                GL.Vertex3(x, 1.0, 0.0f);
+                GL.Vertex3(x, -1.0, 0.0f);
+                x += space;
+            }
+
+            nBlocks = Math.Abs((pb.Y - pa.Y) / space) + 1;
+            y = pa.Y;
+
+            for (int n = 0; n <= nBlocks; n++)
+            {
+                GL.Vertex3(-1.0f, y, 0.0f);
+                GL.Vertex3(1.0f, y, 0.0f);
+                y -= space;
+            }
+
+            GL.End();
+        }
+
         public Vector3 UnProject(
             Vector3 mouse, 
             Matrix4 projection, 
@@ -182,6 +254,9 @@ namespace Clyde.view.graphics
             vec.Y = -(2.0f * mouse.Y / (float)viewport.Height - 1);
             vec.Z = mouse.Z;
             vec.W = 1.0f;
+
+            GL.GetFloat(GetPName.ProjectionMatrix, out projection);
+            GL.GetFloat(GetPName.ModelviewMatrix, out view);
 
             Matrix4 viewInv = Matrix4.Invert(view);
             Matrix4 projInv = Matrix4.Invert(projection);

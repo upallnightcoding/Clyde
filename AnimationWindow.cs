@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Clyde.application;
+using Clyde.view.entity;
 using Clyde.view.graphics;
 using Clyde.view.msg;
 using OpenTK;
@@ -22,9 +24,9 @@ namespace Clyde
         private PointF p = new PointF(0.0f, 0.0f);
         private Vector3 mouse = new Vector3();
 
-        private bool mouseClicked = false;
+        private Entity entity = null;
 
-        private Texture2D texture;
+        private bool mouseClicked = false;
 
         public AnimationWindow()
         {
@@ -38,13 +40,7 @@ namespace Clyde
             Paint += new PaintEventHandler(glControl_Paint);
             MouseDown += new MouseEventHandler(Control_MouseDown);
 
-            GL.ClearColor(Color.MidnightBlue);
-            GL.Enable(EnableCap.DepthTest);
-            GL.Enable(EnableCap.ProgramPointSize);
-            GL.Enable(EnableCap.Blend);
-            //GL.BlendFunc(BlendingFactor.OneMinusSrcColor, BlendingFactor.OneMinusDstColor);
-            GL.DepthFunc(DepthFunction.Lequal);
-            GL.Enable(EnableCap.Texture2D);
+            graphics.Initialize();
 
             Application.Idle += Application_Idle;
 
@@ -52,7 +48,8 @@ namespace Clyde
 
             glControl_Resize(this, null);
 
-            texture = graphics.LoadTexture("D:\\Projects\\c#\\Clyde\\view\\content\\PlatformC.png");
+            entity = new Entity();
+            entity.Texture = graphics.LoadTexture(AppConstant.TEST01_IMAGE);
         }
 
         public void StartAnimation()
@@ -125,9 +122,6 @@ namespace Clyde
 
             graphics.Render();
 
-            GL.Rotate(angle, 0.0f, 1.0f, 0.0f);
-            //angle += 0.5f;
-
             RenderScene();
 
             SwapBuffers();
@@ -135,9 +129,13 @@ namespace Clyde
 
         private void RenderScene()
         {
-            //if (mouseClicked)
-            //{
-                mouseClicked = false;
+            mouseClicked = false;
+
+            Vector3 lowerLeft = new Vector3(1.0f, graphics.viewPort.Height-1, 0.0f);
+            Vector3 ch = graphics.UnProject(lowerLeft);
+
+            GL.Translate(ch.X, ch.Y, 0.0);
+            GL.PushMatrix();
 
             Vector3 pm = graphics.UnProject(mouse);
 
@@ -146,27 +144,17 @@ namespace Clyde
             GL.PointSize(5.0f);
             GL.Vertex3(pm.X, pm.Y, pm.Z);
             GL.End();
-            //}
 
             graphics.CrossHair(pm);
 
-            graphics.Grid(4);
+            graphics.SpriteGrid(8, 8);
 
-            PointF pp = new PointF(pm.X, pm.Y);
+            //PointF pp = new PointF(pm.X, pm.Y);
             graphics.BoxRectangle(pm, 0.25f, Color.Red);
 
-            GL.BindTexture(TextureTarget.Texture2D, texture.Id);
+            entity.Render(graphics);
 
-            GL.Begin(PrimitiveType.Triangles);
-            GL.Color4(1.0f, 1.0f, 1.0f, 1.0f);
-            GL.TexCoord2(0, 0); GL.Vertex2(0, 1);
-            GL.TexCoord2(1, 1); GL.Vertex2(1, 0);
-            GL.TexCoord2(0, 1); GL.Vertex2(0, 0);
-
-            GL.TexCoord2(0, 0); GL.Vertex2(0, 1);
-            GL.TexCoord2(1, 0); GL.Vertex2(1, 1);
-            GL.TexCoord2(1, 1); GL.Vertex2(1, 0);
-            GL.End();
+            GL.PopMatrix();
 
             //GL.Begin(BeginMode.Quads);
             /*   GL.Begin(PrimitiveType.Quads);
