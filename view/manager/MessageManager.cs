@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Clyde.view.manager
 {
-    class MessageManager : MsgReceiver
+    class MessageManager : PostReceiver
     {
         private ListBox messageCntrl = null;
 
@@ -20,7 +20,7 @@ namespace Clyde.view.manager
         {
             this.messageCntrl = messageCntrl;
 
-            MsgManager.Instance.Register(this);
+            PostManager.Instance.Register(this);
         }
 
         /************************/
@@ -28,14 +28,14 @@ namespace Clyde.view.manager
         /************************/
 
         /// <summary>
-        /// This si just a test ...
+        /// Receive() - 
         /// </summary>
         /// <param name="message"></param>
-        public void Receive(MsgPost message)
+        public void Receive(PostMsg message)
         {
             switch(message.Type)
             {
-                case MsgPostType.DISPLAY_MESSAGE:
+                case PostType.DISPLAY_MESSAGE:
                     WriteMsg((string)message.Dto);
                     break;
             }
@@ -45,6 +45,11 @@ namespace Clyde.view.manager
         /*** Private Functions ***/
         /*************************/
 
+        /// <summary>
+        /// WriteMsg() - Displays the text of a message the text message controller.
+        /// If the text is null the message is not displayed.
+        /// </summary>
+        /// <param name="text"></param>
         private void WriteMsg(string text)
         {
             if (text != null)

@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Clyde
 {
-    class WorkSpaceManager : MsgReceiver
+    class WorkSpaceManager : PostReceiver
     {
         private TabControl workSpaceTabCntrl = null;
         private AnimationWindow animationWindow = null;
@@ -28,7 +28,7 @@ namespace Clyde
 
             CreateTab("Game Play", new GamePlayForm(animationWindow));
 
-            MsgManager.Instance.Register(this);
+            PostManager.Instance.Register(this);
         }
 
         /************************/
@@ -39,11 +39,11 @@ namespace Clyde
         /// Receive() - Receiver of posted message.
         /// </summary>
         /// <param name="message"></param>
-        public void Receive(MsgPost message)
+        public void Receive(PostMsg message)
         {
             switch(message.Type)
             {
-                case MsgPostType.CREATE_SPITE_TAB:
+                case PostType.CREATE_SPITE_TAB:
                     CreateEditSprite("New Sprite");
                     break;
             }

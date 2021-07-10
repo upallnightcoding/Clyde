@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Clyde.view.msg
 {
-    interface MsgReceiver
+    interface PostReceiver
     {
-        void Receive(MsgPost message);
+        void Receive(PostMsg message);
     }
 }

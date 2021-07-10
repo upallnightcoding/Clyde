@@ -32,7 +32,6 @@ namespace Clyde
             this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.preferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.applicationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.projectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,10 +52,10 @@ namespace Clyde
             this.animationWindow = new Clyde.AnimationWindow();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.messageCntrl = new System.Windows.Forms.ListBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.messageCntrl = new System.Windows.Forms.ListBox();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -94,7 +93,6 @@ namespace Clyde
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newToolStripMenuItem,
             this.preferencesToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -102,38 +100,31 @@ namespace Clyde
             this.fileToolStripMenuItem.Text = "File";
             this.fileToolStripMenuItem.Click += new System.EventHandler(this.fileToolStripMenuItem_Click);
             // 
-            // newToolStripMenuItem
-            // 
-            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
-            this.newToolStripMenuItem.Text = "New Project";
-            this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
-            // 
             // preferencesToolStripMenuItem
             // 
             this.preferencesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.applicationToolStripMenuItem,
             this.projectToolStripMenuItem});
             this.preferencesToolStripMenuItem.Name = "preferencesToolStripMenuItem";
-            this.preferencesToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.preferencesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.preferencesToolStripMenuItem.Text = "Preferences";
             // 
             // applicationToolStripMenuItem
             // 
             this.applicationToolStripMenuItem.Name = "applicationToolStripMenuItem";
-            this.applicationToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.applicationToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.applicationToolStripMenuItem.Text = "Application";
             // 
             // projectToolStripMenuItem
             // 
             this.projectToolStripMenuItem.Name = "projectToolStripMenuItem";
-            this.projectToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.projectToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.projectToolStripMenuItem.Text = "Project";
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
             // helpToolStripMenuItem
@@ -213,11 +204,11 @@ namespace Clyde
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Navigation";
             // 
-            // navigationTree
+            // navigationCntrl
             // 
             this.navigationCntrl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.navigationCntrl.Location = new System.Drawing.Point(3, 16);
-            this.navigationCntrl.Name = "navigationTree";
+            this.navigationCntrl.Name = "navigationCntrl";
             this.navigationCntrl.Size = new System.Drawing.Size(119, 197);
             this.navigationCntrl.TabIndex = 0;
             // 
@@ -320,6 +311,15 @@ namespace Clyde
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Messages";
             // 
+            // messageCntrl
+            // 
+            this.messageCntrl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.messageCntrl.FormattingEnabled = true;
+            this.messageCntrl.Location = new System.Drawing.Point(3, 16);
+            this.messageCntrl.Name = "messageCntrl";
+            this.messageCntrl.Size = new System.Drawing.Size(725, 199);
+            this.messageCntrl.TabIndex = 1;
+            // 
             // statusStrip1
             // 
             this.statusStrip1.Location = new System.Drawing.Point(3, 215);
@@ -342,15 +342,6 @@ namespace Clyde
             // 
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // messageCntrl
-            // 
-            this.messageCntrl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.messageCntrl.FormattingEnabled = true;
-            this.messageCntrl.Location = new System.Drawing.Point(3, 16);
-            this.messageCntrl.Name = "messageCntrl";
-            this.messageCntrl.Size = new System.Drawing.Size(725, 199);
-            this.messageCntrl.TabIndex = 1;
             // 
             // Form1
             // 
@@ -417,7 +408,6 @@ namespace Clyde
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private AnimationWindow animationWindow;
-        private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
         private System.Windows.Forms.TreeView navigationCntrl;
         private System.Windows.Forms.ToolStripMenuItem preferencesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem applicationToolStripMenuItem;

@@ -1,4 +1,5 @@
-﻿using Clyde.view.manager;
+﻿using Clyde.view.action;
+using Clyde.view.manager;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +17,7 @@ namespace Clyde
         private WorkSpaceManager workSpaceManager = null;
         private NavigationManager navigationManager = null;
         private MessageManager messageManager = null;
+        private MenuManager menuManager = null;
 
         public Form1()
         {
@@ -33,16 +35,19 @@ namespace Clyde
             workSpaceManager = new WorkSpaceManager(workSpaceTabCntrl, animationWindow);
             navigationManager = new NavigationManager(navigationCntrl);
             messageManager = new MessageManager(messageCntrl);
+
+            menuManager = new MenuManager(menuStrip1);
+
+            menuManager.CreateMenu("Test/Menu1/Project1", new ActionNewProject());
+            menuManager.CreateMenu("Test/Menu2/Project2/ProjectA", new ActionNewProject());
+            menuManager.CreateMenu("Test/Menu3/Project3/ProjectB", new ActionNewProject());
+
+            menuManager.CreateMenu("File ...", new ActionNewProject());
         }
 
         /*********************/
         /*** Menu Commands ***/
         /*********************/
-
-        private void newToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            navigationManager.createNewProject();
-        }
 
         private void fileToolStripMenuItem_Click(object sender, EventArgs e)
         {

@@ -1,39 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Clyde.view.msg
 {
-    class MsgManager
+    class PostManager
     {
         // Single instance of message manager
-        private static MsgManager instance = null;
+        private static PostManager instance = null;
 
         // List of all receivers that can receive a message
-        private List<MsgReceiver> msgReceivers = null;
+        private List<PostReceiver> msgReceivers = null;
 
         /*******************/
         /*** Constructor ***/
         /*******************/
 
-        private MsgManager()
+        private PostManager()
         {
-            msgReceivers = new List<MsgReceiver>();
+            msgReceivers = new List<PostReceiver>();
         }
 
         /***********************/
         /*** Public Function ***/
         /***********************/
 
-        public static MsgManager Instance
+        public static PostManager Instance
         {
             get
             {
                 if (instance == null)
                 {
-                    instance = new MsgManager();
+                    instance = new PostManager();
                 }
 
                 return (instance);
@@ -47,7 +43,7 @@ namespace Clyde.view.msg
         /// the MsgReceiver interface.
         /// </summary>
         /// <param name="receiver"></param>
-        public void Register(MsgReceiver receiver)
+        public void Register(PostReceiver receiver)
         {
             if (receiver != null)
             {
@@ -55,21 +51,19 @@ namespace Clyde.view.msg
             }
         }
 
-        public void Post(MsgPostType type, object dto)
+        public void Post(PostType type, object dto)
         {
-            MsgPost message = new MsgPost(type, dto);
+            PostMsg message = new PostMsg(type, dto);
 
-            foreach(MsgReceiver receiver in msgReceivers)
+            foreach(PostReceiver receiver in msgReceivers)
             {
                 receiver.Receive(message);
             }
         }
 
-        public void Post(MsgPostType type)
+        public void Post(PostType type)
         {
             Post(type, null);
         }
-
-
     }
 }

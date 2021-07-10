@@ -66,7 +66,8 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="view\action\Action.cs" />
+    <Compile Include="view\action\ActionCreateSprite.cs" />
+    <Compile Include="view\action\Perform.cs" />
     <Compile Include="view\action\ActionNewProject.cs" />
     <Compile Include="view\entity\Behavior.cs" />
     <Compile Include="view\entity\Entity.cs" />
@@ -88,13 +89,18 @@
     <Compile Include="view\graphics\MousePos.cs" />
     <Compile Include="view\graphics\Texture2D.cs" />
     <Compile Include="view\graphics\UtilityGraphics.cs" />
+    <Compile Include="view\manager\MenuManager.cs" />
     <Compile Include="view\manager\MessageManager.cs" />
-    <Compile Include="view\manager\NavigationManager.cs" />
+    <Compile Include="view\manager\nav\CreateEnvironmentNode.cs" />
+    <Compile Include="view\manager\nav\CreateGameNode.cs" />
+    <Compile Include="view\manager\nav\NavigationManager.cs" />
+    <Compile Include="view\manager\nav\NewNodeIf.cs" />
     <Compile Include="view\manager\WorkSpaceManager.cs" />
-    <Compile Include="view\msg\MsgManager.cs" />
-    <Compile Include="view\msg\MsgPost.cs" />
-    <Compile Include="view\msg\MsgPostType.cs" />
-    <Compile Include="view\msg\MsgReceiver.cs" />
+    <Compile Include="view\post\PostManager.cs" />
+    <Compile Include="view\post\PostMsg.cs" />
+    <Compile Include="view\post\PostType.cs" />
+    <Compile Include="view\post\PostReceiver.cs" />
+    <Compile Include="view\utility\MenuMapper.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

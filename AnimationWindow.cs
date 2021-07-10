@@ -68,7 +68,7 @@ namespace Clyde
 
         private void Control_MouseDown(object sender, MouseEventArgs e)
         {
-            MsgManager.Instance.Post(MsgPostType.DISPLAY_MESSAGE, "Mouse Down: " + e.X + ":" + e.Y);
+            PostManager.Instance.Post(PostType.DISPLAY_MESSAGE, "Mouse Down: " + e.X + ":" + e.Y);
 
             mouse.X = e.X;
             mouse.Y = e.Y;

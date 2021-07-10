@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace Clyde.view.msg
 {
-    enum MsgPostType
+    enum PostType
     {
         UNKNOWN,
         DISPLAY_MESSAGE,
+        CREATE_PROJECT,
         CREATE_SPITE_TAB
     }
 }
