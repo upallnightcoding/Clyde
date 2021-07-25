@@ -91,10 +91,10 @@
     <Compile Include="view\graphics\UtilityGraphics.cs" />
     <Compile Include="view\manager\MenuManager.cs" />
     <Compile Include="view\manager\MessageManager.cs" />
-    <Compile Include="view\manager\nav\CreateEnvironmentNode.cs" />
-    <Compile Include="view\manager\nav\CreateGameNode.cs" />
+    <Compile Include="view\manager\nav\node\CreateEnvironmentNode.cs" />
+    <Compile Include="view\manager\nav\node\CreateGameNode.cs" />
     <Compile Include="view\manager\nav\NavigationManager.cs" />
-    <Compile Include="view\manager\nav\NewNodeIf.cs" />
+    <Compile Include="view\manager\nav\node\NavNode.cs" />
     <Compile Include="view\manager\WorkSpaceManager.cs" />
     <Compile Include="view\post\PostManager.cs" />
     <Compile Include="view\post\PostMsg.cs" />

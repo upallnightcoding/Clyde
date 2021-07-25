@@ -30,24 +30,38 @@ namespace Clyde
         {
             animationWindow.Initialize();
 
-            // Define the manager objects that control the panels
-            //---------------------------------------------------
-            workSpaceManager = new WorkSpaceManager(workSpaceTabCntrl, animationWindow);
-            navigationManager = new NavigationManager(navigationCntrl);
-            messageManager = new MessageManager(messageCntrl);
+            CreateManagers();
 
-            menuManager = new MenuManager(menuStrip1);
-
-            menuManager.CreateMenu("Test/Menu1/Project1", new ActionNewProject());
-            menuManager.CreateMenu("Test/Menu2/Project2/ProjectA", new ActionNewProject());
-            menuManager.CreateMenu("Test/Menu3/Project3/ProjectB", new ActionNewProject());
-
-            menuManager.CreateMenu("File ...", new ActionNewProject());
+            CreateMenuSystem();
         }
 
         /*********************/
         /*** Menu Commands ***/
         /*********************/
+
+        private void CreateManagers()
+        {
+            // Define the manager objects that control the panels
+            //---------------------------------------------------
+            workSpaceManager = new WorkSpaceManager(workSpaceTabCntrl, animationWindow);
+            navigationManager = new NavigationManager(navigationCntrl);
+            messageManager = new MessageManager(messageCntrl);
+            menuManager = new MenuManager(menuStrip1);
+        }
+
+        private void CreateMenuSystem()
+        {
+            menuManager.CreateMenuItem("Test/Menu1/Project1", new ActionNewProject());
+            menuManager.CreateMenuItem("Test/Menu2/Project2/ProjectA", new ActionNewProject());
+            menuManager.CreateMenuItem("Test/Menu3/Project3/ProjectB", new ActionNewProject());
+
+            menuManager.CreateMenuItem("File ...", new ActionNewProject());
+        }
+
+        private void CreateMenuItem()
+        {
+
+        }
 
         private void fileToolStripMenuItem_Click(object sender, EventArgs e)
         {

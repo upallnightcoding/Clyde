@@ -64,10 +64,10 @@ namespace Clyde.view.manager
 
         private void CreateNewProject()
         {
-            projectNode = new TreeNode("Project - <UnNamed> ");
             environmentNode = CreateTreeNode(new CreateEnvironmentNode());
             gameObjectNode = CreateTreeNode(new CreateGameNode());
 
+            projectNode = new TreeNode("Project - <UnNamed> ");
             navigationCntrl.Nodes.Add(projectNode);
 
             projectNode.Nodes.Add(environmentNode);
@@ -90,22 +90,9 @@ namespace Clyde.view.manager
         /// CreateTreeNode() - 
         /// </summary>
         /// <returns></returns>
-        private TreeNode CreateTreeNode(NewNodeIf node)
+        private TreeNode CreateTreeNode(NavNode node)
         {
-            TreeNode newNode = new TreeNode(node.NodeName());
-
-            if (node.CreateAMenu())
-            {
-                ContextMenuStrip contextMenu = new ContextMenuStrip();
-
-                MenuMapper menuMapper = new MenuMapper(contextMenu);
-
-                node.CreateMenuMapping(menuMapper);
-
-                newNode.ContextMenuStrip = contextMenu;
-            }
-
-            return (newNode);
+            return (node.CreateTreeNode());
         }
 
         /*****************************/

@@ -7,21 +7,23 @@ using System.Threading.Tasks;
 
 namespace Clyde.view.manager.nav
 {
-    class CreateEnvironmentNode : NewNodeIf
+    class CreateEnvironmentNode : NavNode
     {
-        public bool CreateAMenu()
+        private static string NODE_NAME = "Environment";
+
+        public override Boolean CreateAMenu()
         {
             return (false);
         }
 
-        public void CreateMenuMapping(MenuMapper menuMapper)
+        public override void CreateMenuOptions()
         {
             throw new NotImplementedException();
         }
 
-        public string NodeName()
+        public override string NodeName()
         {
-            return ("Environment");
+            return (NODE_NAME);
         }
     }
 }

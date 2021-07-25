@@ -32,7 +32,7 @@ namespace Clyde.view.manager
         /// createMenu() - 
         /// </summary>
         /// <param name="path"></param>
-        public void CreateMenu(string path, Perform action)
+        public void CreateMenuItem(string path, Perform action)
         {
             menuMapper.CreateMenu(path, action);
         }
