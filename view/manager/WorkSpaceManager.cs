@@ -1,5 +1,7 @@
 ﻿using Clyde.view.form;
+using Clyde.view.graphics;
 using Clyde.view.msg;
+using Clyde.view.windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +13,7 @@ namespace Clyde
 {
     class WorkSpaceManager : PostReceiver
     {
-        private TabControl workSpaceTabCntrl = null;
+        private FormsWindow formsWindow = null;
         private AnimationWindow animationWindow = null;
 
         /*******************/
@@ -19,14 +21,14 @@ namespace Clyde
         /*******************/
 
         public WorkSpaceManager(
-            TabControl workSpaceTabCntrl, 
+            FormsWindow formsWindow, 
             AnimationWindow animationWindow
         )
         {
-            this.workSpaceTabCntrl = workSpaceTabCntrl;
+            this.formsWindow = formsWindow;
             this.animationWindow = animationWindow;
 
-            CreateTab("Game Play", new GamePlayForm(animationWindow));
+            //CreateTab("Sprite Controls", new WorkSpaceForm(animationWindow));
 
             PostManager.Instance.Register(this);
         }
@@ -55,21 +57,21 @@ namespace Clyde
 
         private void CreateEditSprite(string title)
         {
-            CreateTab("Sprite - XXX", new SpriteCreatorForm());
+            CreateTab("Sprite - XXX", new SpriteCreatorForm(), null);
         }
 
-        private void CreateTab(string title, Form form)
+        private void CreateTab(string title, Form form, Renderer renderer)
         {
-            TabPage newPage = new TabPage(title);
-
             form.TopLevel = false;
             form.FormBorderStyle = FormBorderStyle.None;
             form.Dock = DockStyle.Fill;
 
+            TabPage newPage = new TabPage(title);
+
             newPage.Controls.Add(form);
 
-            workSpaceTabCntrl.TabPages.Add(newPage);
-            workSpaceTabCntrl.SelectedTab = newPage;
+            formsWindow.TabPages.Add(newPage);
+            formsWindow.SelectedTab = newPage;
 
             form.Show();
         }

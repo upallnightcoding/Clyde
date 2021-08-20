@@ -28,9 +28,9 @@ namespace Clyde
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            animationWindow.Initialize();
+            InitializeGlobalObjects();
 
-            CreateManagers();
+            CreateManagerObjects();
 
             CreateMenuSystem();
         }
@@ -39,33 +39,39 @@ namespace Clyde
         /*** Menu Commands ***/
         /*********************/
 
-        private void CreateManagers()
+        /// <summary>
+        /// InitializeGlobalObjects() - 
+        /// </summary>
+        private void InitializeGlobalObjects()
+        {
+            animationWindow.Initialize();
+        }
+
+        /// <summary>
+        /// CreateManagerObjects() - Create all of the manager objects that 
+        /// are used to control the components in the different panels.  
+        /// These objects must be create during startup of the application.
+        /// </summary>
+        private void CreateManagerObjects()
         {
             // Define the manager objects that control the panels
             //---------------------------------------------------
-            workSpaceManager = new WorkSpaceManager(workSpaceTabCntrl, animationWindow);
+            workSpaceManager = new WorkSpaceManager(formsWindow, animationWindow);
             navigationManager = new NavigationManager(navigationCntrl);
             messageManager = new MessageManager(messageCntrl);
             menuManager = new MenuManager(menuStrip1);
         }
 
+        /// <summary>
+        /// CreateMenuSystem() - 
+        /// </summary>
         private void CreateMenuSystem()
         {
+            menuManager.CreateMenuItem("File", new ActionNewProject());
+
             menuManager.CreateMenuItem("Test/Menu1/Project1", new ActionNewProject());
             menuManager.CreateMenuItem("Test/Menu2/Project2/ProjectA", new ActionNewProject());
             menuManager.CreateMenuItem("Test/Menu3/Project3/ProjectB", new ActionNewProject());
-
-            menuManager.CreateMenuItem("File ...", new ActionNewProject());
-        }
-
-        private void CreateMenuItem()
-        {
-
-        }
-
-        private void fileToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

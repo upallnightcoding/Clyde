@@ -52,10 +52,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AnimationWindow.cs">
+    <Compile Include="view\graphics\AnimationWindow.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="AnimationWindow.Designer.cs">
+    <Compile Include="view\graphics\AnimationWindow.Designer.cs">
       <DependentUpon>AnimationWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="application\AppConstant.cs" />
@@ -87,8 +87,12 @@
       <DependentUpon>SpriteCreatorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="view\graphics\MousePos.cs" />
+    <Compile Include="view\graphics\renderer\RenderConfig.cs" />
+    <Compile Include="view\graphics\renderer\Renderer.cs" />
+    <Compile Include="view\graphics\renderer\RendererCreateSprite.cs" />
+    <Compile Include="view\graphics\renderer\RenderInitialize.cs" />
     <Compile Include="view\graphics\Texture2D.cs" />
-    <Compile Include="view\graphics\UtilityGraphics.cs" />
+    <Compile Include="view\graphics\GraphicsUtility.cs" />
     <Compile Include="view\manager\MenuManager.cs" />
     <Compile Include="view\manager\MessageManager.cs" />
     <Compile Include="view\manager\nav\node\CreateEnvironmentNode.cs" />
@@ -101,6 +105,9 @@
     <Compile Include="view\post\PostType.cs" />
     <Compile Include="view\post\PostReceiver.cs" />
     <Compile Include="view\utility\MenuMapper.cs" />
+    <Compile Include="view\windows\FormsWindow.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

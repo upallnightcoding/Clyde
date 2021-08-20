@@ -1,7 +1,7 @@
 ﻿
 namespace Clyde
 {
-    partial class GamePlayForm
+    partial class WorkSpaceForm
     {
         /// <summary>
         /// Required designer variable.
@@ -40,11 +40,11 @@ namespace Clyde
             | System.Windows.Forms.AnchorStyles.Right)));
             this.startBtn.Location = new System.Drawing.Point(13, 13);
             this.startBtn.Name = "startBtn";
-            this.startBtn.Size = new System.Drawing.Size(209, 23);
+            this.startBtn.Size = new System.Drawing.Size(157, 23);
             this.startBtn.TabIndex = 0;
             this.startBtn.Text = "Start";
             this.startBtn.UseVisualStyleBackColor = true;
-            this.startBtn.Click += new System.EventHandler(this.startBtn_Click);
+            this.startBtn.Click += new System.EventHandler(this.StartBtn_Click);
             // 
             // stopBtn
             // 
@@ -52,11 +52,11 @@ namespace Clyde
             | System.Windows.Forms.AnchorStyles.Right)));
             this.stopBtn.Location = new System.Drawing.Point(13, 42);
             this.stopBtn.Name = "stopBtn";
-            this.stopBtn.Size = new System.Drawing.Size(209, 23);
+            this.stopBtn.Size = new System.Drawing.Size(157, 23);
             this.stopBtn.TabIndex = 1;
             this.stopBtn.Text = "Stop";
             this.stopBtn.UseVisualStyleBackColor = true;
-            this.stopBtn.Click += new System.EventHandler(this.stopBtn_Click);
+            this.stopBtn.Click += new System.EventHandler(this.StopBtn_Click);
             // 
             // checkBox1
             // 
@@ -72,7 +72,7 @@ namespace Clyde
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(234, 157);
+            this.ClientSize = new System.Drawing.Size(182, 157);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.stopBtn);
             this.Controls.Add(this.startBtn);

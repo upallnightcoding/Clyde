@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Clyde.view.msg.PostManager" HideInheritanceLine="true">
-    <Position X="1" Y="7.5" Width="1.5" />
+    <Position X="3.75" Y="7.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAQAAAAAAAAAAAAAAAAACABBAAAAQAAAAAAAAAA=</HashCode>
       <FileName>view\post\PostManager.cs</FileName>
@@ -11,37 +11,36 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="Clyde.view.msg.PostMsg" Collapsed="true" HideInheritanceLine="true">
-    <Position X="2.75" Y="7.5" Width="1.5" />
+    <Position X="5.5" Y="7.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAQAAAAAAAAA=</HashCode>
       <FileName>view\post\PostMsg.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Clyde.WorkSpaceManager" Collapsed="true" HideInheritanceLine="true">
-    <Position X="4.25" Y="3.25" Width="1.75" />
+    <Position X="7" Y="3.25" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAEBAAAAEAAAAAQAAAAAAAAACA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAQAAAAAEAAAAAEAAAAAQAAAAAAAAACA=</HashCode>
       <FileName>view\manager\WorkSpaceManager.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="workSpaceTabCntrl" />
       <Field Name="animationWindow" />
+      <Field Name="formsWindow" />
     </ShowAsAssociation>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Clyde.AnimationWindow" Collapsed="true">
-    <Position X="1.5" Y="1.5" Width="1.75" />
+    <Position X="4.25" Y="1.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAABgAACAAAwAAAAiEAEACAACAAAgAAFAAACBYAAA=</HashCode>
-      <FileName>AnimationWindow.cs</FileName>
+      <HashCode>AAAAABoAACACAwAAAAiEAEACAACAAAAAAFAAACBYgAA=</HashCode>
+      <FileName>view\graphics\AnimationWindow.cs</FileName>
     </TypeIdentifier>
-  </Class>
-  <Class Name="System.Windows.Forms.TabControl" Collapsed="true">
-    <Position X="1.5" Y="0.5" Width="1.5" />
-    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Field Name="renderer" />
+    </ShowAsAssociation>
   </Class>
   <Class Name="Clyde.view.manager.NavigationManager" Collapsed="true">
-    <Position X="4.25" Y="4.25" Width="1.75" />
+    <Position X="7" Y="4.25" Width="1.75" />
     <TypeIdentifier>
       <HashCode>IAAAAAAAAgAAIAAAAAgABAAQAAAAABAQEAAAAAAEAAA=</HashCode>
       <FileName>view\manager\nav\NavigationManager.cs</FileName>
@@ -52,7 +51,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Clyde.view.manager.MessageManager" Collapsed="true">
-    <Position X="4.25" Y="5.5" Width="1.75" />
+    <Position X="7" Y="5.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAABAAAAABAAAAAAAAAAAAAAQAAAAAAAAAAA=</HashCode>
       <FileName>view\manager\MessageManager.cs</FileName>
@@ -63,9 +62,9 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Clyde.Form1" Collapsed="true">
-    <Position X="1.25" Y="4.25" Width="1.25" />
+    <Position X="4" Y="4.25" Width="1.25" />
     <TypeIdentifier>
-      <HashCode>BQCQAAAAACBAIAAgAEGDBAACAEAgAQEAAmQAAQEACAE=</HashCode>
+      <HashCode>AQAQAAAACCBAIQAAAECBAEACAEAAAQGAAGQAAQEAAAE=</HashCode>
       <FileName>Form1.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -75,15 +74,15 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="System.Windows.Forms.ListBox" Collapsed="true">
-    <Position X="7.25" Y="5.5" Width="1.5" />
+    <Position X="10" Y="5.5" Width="1.5" />
     <TypeIdentifier />
   </Class>
   <Class Name="System.Windows.Forms.TreeView" Collapsed="true">
-    <Position X="7.5" Y="4.25" Width="1.5" />
+    <Position X="10.25" Y="4.25" Width="1.5" />
     <TypeIdentifier />
   </Class>
   <Class Name="Clyde.view.action.ActionCreateSprite" Collapsed="true">
-    <Position X="6.5" Y="0.75" Width="1.75" />
+    <Position X="9.25" Y="0.75" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAEQAAAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>view\action\ActionCreateSprite.cs</FileName>
@@ -91,7 +90,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Clyde.view.action.ActionNewProject" Collapsed="true">
-    <Position X="9" Y="0.75" Width="1.5" />
+    <Position X="11.75" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAEQAAAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>view\action\ActionNewProject.cs</FileName>
@@ -99,37 +98,59 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Clyde.view.manager.nav.CreateEnvironmentNode" Collapsed="true">
-    <Position X="7.75" Y="8.75" Width="2" />
+    <Position X="10.5" Y="8.75" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAABAAAACAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAE=</HashCode>
       <FileName>view\manager\nav\node\CreateEnvironmentNode.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Clyde.view.manager.nav.NavNode" Collapsed="true">
-    <Position X="7" Y="7.5" Width="1.5" />
+    <Position X="9.75" Y="7.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAABAAAAAAAAAAAAAAAAAAARAAgBAAAAAAAAAAAAE=</HashCode>
       <FileName>view\manager\nav\node\NavNode.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Clyde.view.manager.nav.CreateGameNode" Collapsed="true">
-    <Position X="5.75" Y="8.75" Width="1.5" />
+    <Position X="8.5" Y="8.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAABAAAACAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAE=</HashCode>
       <FileName>view\manager\nav\node\CreateGameNode.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="Clyde.view.graphics.RendererCreateSprite" Collapsed="true">
+    <Position X="0.75" Y="4" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>view\graphics\renderer\RendererCreateSprite.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Clyde.view.windows.FormsWindow" Collapsed="true">
+    <Position X="4.25" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>view\windows\FormsWindow.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Interface Name="Clyde.view.msg.PostReceiver">
-    <Position X="2.25" Y="10.25" Width="1.5" />
+    <Position X="5" Y="10.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAA=</HashCode>
       <FileName>view\post\PostReceiver.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Enum Name="Clyde.view.msg.PostType" Collapsed="true">
-    <Position X="2.75" Y="8.25" Width="1.5" />
+  <Interface Name="Clyde.view.graphics.Renderer" Collapsed="true">
+    <Position X="2.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAEAAAABAACAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>view\graphics\renderer\Renderer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Clyde.view.msg.PostType" Collapsed="true">
+    <Position X="5.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAABAACIAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>view\post\PostType.cs</FileName>
     </TypeIdentifier>
   </Enum>

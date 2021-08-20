@@ -68,12 +68,15 @@ namespace Clyde.view.manager
             gameObjectNode = CreateTreeNode(new CreateGameNode());
 
             projectNode = new TreeNode("Project - <UnNamed> ");
-            navigationCntrl.Nodes.Add(projectNode);
-
-            projectNode.Nodes.Add(environmentNode);
+            projectNode.Nodes.Add(environmentNode); 
             projectNode.Nodes.Add(gameObjectNode);
+
+            navigationCntrl.Nodes.Add(projectNode);
         }
 
+        /// <summary>
+        /// CreateStaticObject() - 
+        /// </summary>
         private void CreateStaticObject()
         {
             if (staticObjectNode == null)

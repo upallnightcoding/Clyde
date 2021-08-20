@@ -20,7 +20,7 @@ namespace Clyde.view.entity
             transform = new Transform();
         }
 
-        public void Render(UtilityGraphics ug)
+        public void Render(GraphicsUtility ug)
         {
             GL.PushMatrix();
 

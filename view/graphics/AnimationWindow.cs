@@ -1,26 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Clyde.application;
+﻿using Clyde.application;
 using Clyde.view.entity;
 using Clyde.view.graphics;
 using Clyde.view.msg;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
+using System;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Clyde
 {
     public partial class AnimationWindow : OpenTK.GLControl
     {
-        private bool play = false;
+        private bool play = true;
         static float angle = 0.0f;
-        private UtilityGraphics graphics = null;
+        private GraphicsUtility graphicsUtility = null;
         private PointF p = new PointF(0.0f, 0.0f);
         private Vector3 mouse = new Vector3();
 
@@ -28,19 +22,23 @@ namespace Clyde
 
         private bool mouseClicked = false;
 
+        private Renderer renderer = null;
+
         public AnimationWindow()
         {
             InitializeComponent();
-            graphics = new UtilityGraphics();
+            graphicsUtility = new GraphicsUtility();
         }
 
         public void Initialize()
         {
+            // Event Handlers
+            //---------------
             Resize += new EventHandler(glControl_Resize);
             Paint += new PaintEventHandler(glControl_Paint);
             MouseDown += new MouseEventHandler(Control_MouseDown);
 
-            graphics.Initialize();
+            graphicsUtility.Initialize();
 
             Application.Idle += Application_Idle;
 
@@ -49,7 +47,7 @@ namespace Clyde
             glControl_Resize(this, null);
 
             entity = new Entity();
-            entity.Texture = graphics.LoadTexture(AppConstant.TEST01_IMAGE);
+            entity.Texture = graphicsUtility.LoadTexture(AppConstant.TEST01_IMAGE);
         }
 
         public void StartAnimation()
@@ -60,6 +58,13 @@ namespace Clyde
         public void StopAnimation()
         {
             play = false;
+        }
+
+        public void SetRenderer(Renderer renderer)
+        {
+            this.renderer = renderer;
+
+            renderer.Initialize();
         }
 
         /*************************/
@@ -88,7 +93,7 @@ namespace Clyde
         {
             OpenTK.GLControl client = sender as OpenTK.GLControl;
 
-            graphics.Resize(client.ClientSize.Width, client.ClientSize.Height);
+            graphicsUtility.Resize(client.ClientSize.Width, client.ClientSize.Height);
 
             /*if (c.ClientSize.Height == 0)
                 c.ClientSize = new System.Drawing.Size(c.ClientSize.Width, 1);
@@ -120,9 +125,16 @@ namespace Clyde
 
             //GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
-            graphics.Render();
+            //graphicsUtility.Render();
 
-            RenderScene();
+            //RenderScene();
+
+            if (renderer != null)
+            {
+                //renderer.Initialize();
+                //renderer.Scene(graphicsUtility);
+                RenderScene();
+            }
 
             SwapBuffers();
         }
@@ -131,13 +143,13 @@ namespace Clyde
         {
             mouseClicked = false;
 
-            Vector3 lowerLeft = new Vector3(1.0f, graphics.viewPort.Height-1, 0.0f);
-            Vector3 ch = graphics.UnProject(lowerLeft);
+            Vector3 lowerLeft = new Vector3(1.0f, graphicsUtility.viewPort.Height-1, 0.0f);
+            Vector3 ch = graphicsUtility.UnProject(lowerLeft);
 
             GL.Translate(ch.X, ch.Y, 0.0);
             GL.PushMatrix();
 
-            Vector3 pm = graphics.UnProject(mouse);
+            Vector3 pm = graphicsUtility.UnProject(mouse);
 
             GL.Begin(PrimitiveType.Points);
             GL.Color3(Color.Silver);
@@ -145,19 +157,17 @@ namespace Clyde
             GL.Vertex3(pm.X, pm.Y, pm.Z);
             GL.End();
 
-            graphics.CrossHair(pm);
-
-            graphics.SpriteGrid(8, 8);
+            graphicsUtility.CrossHair(pm);
 
             //PointF pp = new PointF(pm.X, pm.Y);
-            graphics.BoxRectangle(pm, 0.25f, Color.Red);
+            graphicsUtility.BoxRectangle(pm, 0.25f, Color.Red);
 
-            entity.Render(graphics);
+            entity.Render(graphicsUtility);
 
             GL.PopMatrix();
 
             //GL.Begin(BeginMode.Quads);
-            /*   GL.Begin(PrimitiveType.Quads);
+            /*   GL.Begin(PrimitiveType.Quads); 
 
                GL.Color3(Color.Silver);
                GL.Vertex3(-1.0f, -1.0f, -1.0f);

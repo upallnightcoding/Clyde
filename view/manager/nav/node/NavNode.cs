@@ -13,15 +13,6 @@ namespace Clyde.view.manager.nav
     {
         private MenuMapper menuMapper = null;
 
-        /*******************/
-        /*** Constructor ***/
-        /*******************/
-
-        public NavNode()
-        {
-            
-        }
-
         /**************************/
         /*** Abstract Functions ***/
         /**************************/

@@ -6,7 +6,7 @@ using System.Drawing.Imaging;
 
 namespace Clyde.view.graphics
 {
-    class UtilityGraphics
+    public class GraphicsUtility
     {
         // Class Constants
         private static float XY_PLANE = 0.0f;

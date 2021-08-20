@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Clyde.view.msg;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,6 +19,27 @@ namespace Clyde.view.form
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SelectColor_Click(object sender, EventArgs e)
+        {
+            ColorDialog dialog = new ColorDialog();
+            dialog.AllowFullOpen = false;
+            dialog.ShowHelp = true;
+            dialog.Color = textBox1.ForeColor;
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                selectColorBtn.BackColor = dialog.Color;
+
+                PostManager.Instance.Post(PostType.SET_DRAWING_COLOR, dialog.Color);
+            }
+                
+        }
+
+        private void button1_Click(object sender, EventArgs e)
         {
 
         }

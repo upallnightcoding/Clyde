@@ -1,4 +1,6 @@
 ﻿
+using Clyde.view.windows;
+
 namespace Clyde
 {
     partial class Form1
@@ -31,13 +33,6 @@ namespace Clyde
         {
             this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.preferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.applicationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.projectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.panel1 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -48,15 +43,15 @@ namespace Clyde
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.grpBoxWorkSpace = new System.Windows.Forms.GroupBox();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
-            this.workSpaceTabCntrl = new System.Windows.Forms.TabControl();
-            this.animationWindow = new Clyde.AnimationWindow();
+            //this.formsWindow = new System.Windows.Forms.TabControl();
+            this.formsWindow = new FormsWindow();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.messageCntrl = new System.Windows.Forms.ListBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.menuStrip1.SuspendLayout();
+            this.animationWindow = new Clyde.AnimationWindow();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -81,65 +76,11 @@ namespace Clyde
             // 
             // menuStrip1
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(860, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
-            // 
-            // fileToolStripMenuItem
-            // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.preferencesToolStripMenuItem,
-            this.exitToolStripMenuItem});
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "File";
-            this.fileToolStripMenuItem.Click += new System.EventHandler(this.fileToolStripMenuItem_Click);
-            // 
-            // preferencesToolStripMenuItem
-            // 
-            this.preferencesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.applicationToolStripMenuItem,
-            this.projectToolStripMenuItem});
-            this.preferencesToolStripMenuItem.Name = "preferencesToolStripMenuItem";
-            this.preferencesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.preferencesToolStripMenuItem.Text = "Preferences";
-            // 
-            // applicationToolStripMenuItem
-            // 
-            this.applicationToolStripMenuItem.Name = "applicationToolStripMenuItem";
-            this.applicationToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.applicationToolStripMenuItem.Text = "Application";
-            // 
-            // projectToolStripMenuItem
-            // 
-            this.projectToolStripMenuItem.Name = "projectToolStripMenuItem";
-            this.projectToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.projectToolStripMenuItem.Text = "Project";
-            // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.exitToolStripMenuItem.Text = "Exit";
-            // 
-            // helpToolStripMenuItem
-            // 
-            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aboutToolStripMenuItem});
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.helpToolStripMenuItem.Text = "Help";
-            // 
-            // aboutToolStripMenuItem
-            // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
-            this.aboutToolStripMenuItem.Text = "About";
             // 
             // toolStrip1
             // 
@@ -261,7 +202,7 @@ namespace Clyde
             // 
             // splitContainer4.Panel1
             // 
-            this.splitContainer4.Panel1.Controls.Add(this.workSpaceTabCntrl);
+            this.splitContainer4.Panel1.Controls.Add(this.formsWindow);
             // 
             // splitContainer4.Panel2
             // 
@@ -272,22 +213,12 @@ namespace Clyde
             // 
             // workSpaceTabCntrl
             // 
-            this.workSpaceTabCntrl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.workSpaceTabCntrl.Location = new System.Drawing.Point(0, 0);
-            this.workSpaceTabCntrl.Name = "workSpaceTabCntrl";
-            this.workSpaceTabCntrl.SelectedIndex = 0;
-            this.workSpaceTabCntrl.Size = new System.Drawing.Size(307, 197);
-            this.workSpaceTabCntrl.TabIndex = 0;
-            // 
-            // animationWindow
-            // 
-            this.animationWindow.BackColor = System.Drawing.Color.Black;
-            this.animationWindow.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.animationWindow.Location = new System.Drawing.Point(0, 0);
-            this.animationWindow.Name = "animationWindow";
-            this.animationWindow.Size = new System.Drawing.Size(414, 197);
-            this.animationWindow.TabIndex = 0;
-            this.animationWindow.VSync = false;
+            this.formsWindow.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.formsWindow.Location = new System.Drawing.Point(0, 0);
+            this.formsWindow.Name = "workSpaceTabCntrl";
+            this.formsWindow.SelectedIndex = 0;
+            this.formsWindow.Size = new System.Drawing.Size(307, 197);
+            this.formsWindow.TabIndex = 0;
             // 
             // checkBox2
             // 
@@ -343,6 +274,16 @@ namespace Clyde
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
+            // animationWindow
+            // 
+            this.animationWindow.BackColor = System.Drawing.Color.Black;
+            this.animationWindow.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.animationWindow.Location = new System.Drawing.Point(0, 0);
+            this.animationWindow.Name = "animationWindow";
+            this.animationWindow.Size = new System.Drawing.Size(414, 197);
+            this.animationWindow.TabIndex = 0;
+            this.animationWindow.VSync = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -355,8 +296,6 @@ namespace Clyde
             this.Name = "Form1";
             this.Text = "Clyde v1.0";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -388,10 +327,6 @@ namespace Clyde
         #endregion
 
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.SplitContainer splitContainer1;
@@ -401,7 +336,7 @@ namespace Clyde
         private System.Windows.Forms.SplitContainer splitContainer3;
         private System.Windows.Forms.GroupBox grpBoxWorkSpace;
         private System.Windows.Forms.SplitContainer splitContainer4;
-        private System.Windows.Forms.TabControl workSpaceTabCntrl;
+        private FormsWindow formsWindow;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.CheckBox checkBox1;
@@ -409,9 +344,6 @@ namespace Clyde
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private AnimationWindow animationWindow;
         private System.Windows.Forms.TreeView navigationCntrl;
-        private System.Windows.Forms.ToolStripMenuItem preferencesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem applicationToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem projectToolStripMenuItem;
         private System.Windows.Forms.ListBox messageCntrl;
     }
 }
